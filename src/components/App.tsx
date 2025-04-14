@@ -18,7 +18,7 @@ const App = () => {
             <Link to="/ticketStats">Ticket Statistics</Link>
             <h1>Number: {count}</h1>
             <button className={classes.button} onClick={increment}><span>Increment</span></button>
-            <Outlet />
+
         </div>
     )
 }
