@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './components/App';
 import { LazyTicketList } from './pages/TicketList/TicketList.lazy';
 import TicketStatsDisplay from './pages/TicketStatsDisplay/TicketStatsDisplay';
@@ -15,23 +15,29 @@ if (!root) {
 
 const rootElement = createRoot(root);
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <App />,
-        children: [
-            {
-                path: '/ticketList',
-                element: <Suspense fallback={'loading...'}><LazyTicketList /></Suspense>,
-            },
-            {
-                path: '/ticketStats',
-                element: <Suspense fallback={'loading...'}><TicketStatsDisplay /></Suspense>,
-            }
-        ]
-    },
-])
+<Routes>
+            <Route path="/" element={<App />}>
+                <Route
+                    path="ticketList"
+                    element={
+                        <Suspense fallback="loading...">
+                            <LazyTicketList />
+                        </Suspense>
+                    }
+                />
+                <Route
+                    path="ticketStats"
+                    element={
+                        <Suspense fallback="loading...">
+                            <TicketStatsDisplay />
+                        </Suspense>
+                    }
+                />
+            </Route>
+        </Routes>
 
 rootElement.render(
-    <RouterProvider router={router} />
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
 );
