@@ -8,7 +8,6 @@ import App from '../../components/App';
 // Компонент маршрутов
 const AppRoutes = () => (
     <Routes>
-        <Route path="/" element={<App />} />ы
         <Route
             path="ticketList"
             element={
