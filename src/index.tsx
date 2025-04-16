@@ -1,9 +1,9 @@
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './components/App';
 import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import ReactQueryProvider from './app/ReactQueryProvider';
 import ReduxProvider from './app/ReduxProvider';
+import App from './components/App';
+import './styles/global.scss';
 
 
 const root = document.getElementById('root');

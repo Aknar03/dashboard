@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import TicketStatsDisplay from '../pages/TicketStatsDisplay/TicketStatsDisplay';
 import { Tickets } from '../pages/TicketList';
+import { Stats } from 'webpack';
 
 // Компонент маршрутов
 const AppRoutes = () => (
