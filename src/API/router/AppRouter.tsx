@@ -1,23 +1,23 @@
 import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-import { LazyTicketList } from '../../pages/TicketList/TicketList.lazy';
 import TicketStatsDisplay from '../../pages/TicketStatsDisplay/TicketStatsDisplay';
-import App from '../../components/App';
+import { Tickets } from '../../pages/TicketList';
 
 // Компонент маршрутов
 const AppRoutes = () => (
     <Routes>
+        <Route path="*" element={<div>Страница не найдена</div>} />
+
         <Route
-            path="ticketList"
+            path="/ticketList"
             element={
                 <Suspense fallback="loading...">
-                    <LazyTicketList />
+                    <Tickets />
                 </Suspense>
             }
         />
         <Route
-            path="ticketStats"
+            path="/ticketStats"
             element={
                 <Suspense fallback="loading...">
                     <TicketStatsDisplay />
