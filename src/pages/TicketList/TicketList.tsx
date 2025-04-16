@@ -4,8 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { setSort } from '../../store/ticketFiltersSlice';
 import { useMemo } from 'react';
+import StatusFilter from '../../components/StatusFilter';
+import PriorityFilter from '../../components/PriorityFilter';
 
-const TicketList = () => {
+const TicketsPage = () => {
   const { data: tickets, isLoading, isError } = useQuery({
     queryKey: ['tickets'],
     queryFn: fetchTickets,
@@ -51,6 +53,11 @@ const TicketList = () => {
   return (
     <div>
       <h2>Список тикетов</h2>
+      
+      {/* Добавляем фильтры */}
+      <StatusFilter />
+      <PriorityFilter />
+      
       <button
         onClick={() =>
           dispatch(
@@ -61,8 +68,9 @@ const TicketList = () => {
           )
         }
       >
-        Сортировать по ({filters.sort.direction ? 'по возрастанию' : 'по убыванию'})
+        Сортировать по приоритету ({filters.sort.direction})
       </button>
+
       <ul>
         {filteredTickets.map((t) => (
           <li key={t.id}>
@@ -74,4 +82,4 @@ const TicketList = () => {
   );
 };
 
-export default TicketList;
+export default TicketsPage;
