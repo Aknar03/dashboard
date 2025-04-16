@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchTicketStats, TicketStats } from '../../API/mockApi';
+import { fetchTicketStats,  } from '../../API/mockApi';
+import { TicketStats } from '../../API/types';
 
 const TicketStatsDisplay = () => {
   const { data, isLoading, isError } = useQuery<TicketStats>({

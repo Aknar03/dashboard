@@ -1,91 +1,66 @@
-// Типы
-export type TicketStatus = 'open' | 'inProgress' | 'pendingClient' | 'closed';
-export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent';
+import { TicketStats, TicketSummary } from './types';
 
-export interface TicketStats {
-  open: number;
-  inProgress: number;
-  pendingClient: number;
-  closedToday: number;
-}
-
-export interface TicketSummary {
-  id: string;
-  subject: string;
-  status: TicketStatus;
-  priority: TicketPriority;
-  lastUpdated: string; // ISO-строка
-  assignedAgent?: string;
-}
-
-// Мок-статистика
-const mockStatsData: TicketStats = {
+// Мок-данные для статистики тикетов
+export const mockStatsData: TicketStats = {
   open: 5,
-  inProgress: 3,
-  pendingClient: 2,
-  closedToday: 7,
+  inProgress: 12,
+  pendingClient: 3,
+  closedToday: 2,
 };
 
-// Мок-тикеты
-const mockTickets: TicketSummary[] = [
+// Мок-данные для тикетов
+export const mockTickets: TicketSummary[] = [
   {
     id: '1',
-    subject: 'Проблема с авторизацией',
+    subject: 'Issue with login',
     status: 'open',
     priority: 'high',
-    lastUpdated: '2025-04-14T09:30:00Z',
-    assignedAgent: 'Agent A',
+    lastUpdated: '2025-04-15T10:30:00Z',
+    assignedAgent: 'Agent 1',
   },
   {
     id: '2',
-    subject: 'Сбой в системе оплаты',
+    subject: 'Slow website',
     status: 'inProgress',
-    priority: 'urgent',
-    lastUpdated: '2025-04-13T14:20:00Z',
-    assignedAgent: 'Agent B',
+    priority: 'medium',
+    lastUpdated: '2025-04-14T15:00:00Z',
+    assignedAgent: 'Agent 2',
   },
   {
     id: '3',
-    subject: 'Клиент не отвечает',
+    subject: 'Payment gateway error',
     status: 'pendingClient',
-    priority: 'medium',
-    lastUpdated: '2025-04-12T16:00:00Z',
+    priority: 'urgent',
+    lastUpdated: '2025-04-14T12:00:00Z',
+    assignedAgent: 'Agent 3',
   },
   {
     id: '4',
-    subject: 'Запрос на возврат',
+    subject: 'UI bug',
     status: 'closed',
     priority: 'low',
-    lastUpdated: '2025-04-14T08:00:00Z',
-    assignedAgent: 'Agent C',
+    lastUpdated: '2025-04-13T09:00:00Z',
   },
   {
     id: '5',
-    subject: 'Ошибка в мобильном приложении',
-    status: 'open',
+    subject: 'API integration issue',
+    status: 'inProgress',
     priority: 'high',
-    lastUpdated: '2025-04-13T11:15:00Z',
+    lastUpdated: '2025-04-14T11:00:00Z',
+    assignedAgent: 'Agent 1',
   },
 ];
 
-// Утилита имитации задержки и ошибок
-const simulateDelay = <T>(data: T, shouldFail = false, delay = 1000): Promise<T> => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (shouldFail) {
-        reject(new Error('Ошибка при получении данных'));
-      } else {
-        resolve(structuredClone(data)); // Глубокая копия
-      }
-    }, delay);
-  });
+// Функция для имитации асинхронного запроса статистики тикетов
+export const fetchTicketStats = async (): Promise<TicketStats> => {
+  return new Promise((resolve) =>
+    setTimeout(() => resolve(mockStatsData), 1000)
+  );
 };
 
-// Функции API
-export const fetchTicketStats = (shouldFail = false): Promise<TicketStats> => {
-  return simulateDelay(mockStatsData, shouldFail);
-};
-
-export const fetchTickets = (shouldFail = false): Promise<TicketSummary[]> => {
-  return simulateDelay(mockTickets, shouldFail);
+// Функция для имитации асинхронного запроса тикетов
+export const fetchTickets = async (): Promise<TicketSummary[]> => {
+  return new Promise((resolve) =>
+    setTimeout(() => resolve(mockTickets), 1000)
+  );
 };

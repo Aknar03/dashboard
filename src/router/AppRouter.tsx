@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import TicketStatsDisplay from '../../pages/TicketStatsDisplay/TicketStatsDisplay';
-import { Tickets } from '../../pages/TicketList';
+import TicketStatsDisplay from '../pages/TicketStatsDisplay/TicketStatsDisplay';
+import { Tickets } from '../pages/TicketList';
 
 // Компонент маршрутов
 const AppRoutes = () => (

@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import { StrictMode } from 'react';
 import ReactQueryProvider from './app/ReactQueryProvider';
+import ReduxProvider from './app/ReduxProvider';
 
 
 const root = document.getElementById('root');
@@ -16,8 +17,10 @@ const rootElement = createRoot(root);
 
 rootElement.render(
     <StrictMode>
-        <ReactQueryProvider>
-            <App />
-        </ReactQueryProvider>
+        <ReduxProvider>
+            <ReactQueryProvider>
+                <App />
+            </ReactQueryProvider>
+        </ReduxProvider>
     </StrictMode>
 );
