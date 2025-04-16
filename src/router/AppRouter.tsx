@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import TicketStatsDisplay from '../pages/TicketStatsDisplay/TicketStatsDisplay';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Tickets } from '../pages/TicketList';
-import { Stats } from 'webpack';
+import TicketStatsDisplay from '../pages/TicketStatsDisplay/TicketStatsDisplay';
 
 // Компонент маршрутов
 const AppRoutes = () => (
     <Routes>
         <Route path="*" element={<div>Страница не найдена</div>} />
+        <Route path="/" element={<Navigate to='/ticketStats' />} />
 
         <Route
             path="/ticketList"

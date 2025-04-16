@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchTicketStats,  } from '../../API/mockApi';
+import { fetchTicketStats } from '../../API/mockApi';
 import { TicketStats } from '../../API/types';
+import * as styles from './TicketStatsDisplay.module.scss';
 
 const TicketStatsDisplay = () => {
   const { data, isLoading, isError } = useQuery<TicketStats>({
@@ -12,7 +13,7 @@ const TicketStatsDisplay = () => {
   if (isError || !data) return <p>Ошибка при загрузке статистики</p>;
 
   return (
-    <div style={{ display: 'flex', gap: '1rem' }}>
+    <div className={styles.wrapper}>
       <StatCard label="Открыто" value={data.open} />
       <StatCard label="В обработке" value={data.inProgress} />
       <StatCard label="Ожидают ответа" value={data.pendingClient} />
@@ -23,17 +24,9 @@ const TicketStatsDisplay = () => {
 
 const StatCard = ({ label, value }: { label: string; value: number }) => {
   return (
-    <div
-      style={{
-        padding: '1rem',
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '150px',
-        textAlign: 'center',
-      }}
-    >
-      <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{value}</div>
-      <div style={{ fontSize: '0.9rem', color: '#555' }}>{label}</div>
+    <div className={styles.card}>
+      <div className={styles.value}>{value}</div>
+      <div className={styles.label}>{label}</div>
     </div>
   );
 };
