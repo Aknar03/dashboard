@@ -1,54 +1,82 @@
 .wrapper {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
+    padding: 20px
 }
 
-.heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.button {
-    padding: 8px 14px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    &:hover {
-        background-color: #0056b3;
-    }
-}
-
-
-
-.list {
-    list-style: none;
-    padding: 0;
-}
-
-.item {
-    padding: 12px 16px;
+.table {
+    width: 100%;
+    border-collapse: collapse;
     background-color: #fff;
-    margin-bottom: 12px;
     border-radius: 10px;
-    border: 1px solid #eee;
+    overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    strong {
-        color: #ff5722;
+    th,
+    td {
+        padding: 14px 16px;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 14px;
     }
+
+    th {
+        background-color: #f9f9f9;
+        font-weight: 600;
+        color: #666;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-transform: lowercase;
+}
+
+.status_open {
+
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.status_inProgress {
+    background-color: #fff9c4;
+    color: #f9a825;
+}
+
+.status_closed {
+    background-color: #fddede;
+    color: #c62828;
+}
+
+.status_pendingClient {
+    background-color: #ffe0b2;
+    color: #ef6c00;
+}
+
+.priority_urgent {
+    background-color: #fddede;
+    color: #c62828;
+}
+
+.priority_high {
+    background-color: #ffe0b2;
+    color: #ef6c00;
+}
+
+.priority_medium {
+    background-color: #fff9c4;
+    color: #fbc02d;
+}
+
+.priority_low {
+    background-color: #dcedc8;
+    color: #7cb342;
 }

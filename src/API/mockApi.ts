@@ -40,6 +40,7 @@ export const mockTickets: TicketSummary[] = [
     status: 'closed',
     priority: 'low',
     lastUpdated: '2025-04-13T09:00:00Z',
+    assignedAgent: 'Agent 4',
   },
   {
     id: '5',
@@ -47,7 +48,8 @@ export const mockTickets: TicketSummary[] = [
     status: 'inProgress',
     priority: 'high',
     lastUpdated: '2025-04-14T11:00:00Z',
-    assignedAgent: 'Agent 1',
+    assignedAgent: 'Agent 5',
+    
   },
 ];
 

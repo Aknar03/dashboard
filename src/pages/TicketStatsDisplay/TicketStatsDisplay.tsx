@@ -14,17 +14,17 @@ const TicketStatsDisplay = () => {
 
   return (
     <div className={styles.wrapper}>
-      <StatCard label="Открыто" value={data.open} />
-      <StatCard label="В обработке" value={data.inProgress} />
-      <StatCard label="Ожидают ответа" value={data.pendingClient} />
-      <StatCard label="Закрыто сегодня" value={data.closedToday} />
+      <StatCard label="Открыто" value={data.open} color="#FFCDD2"/>
+      <StatCard label="В обработке" value={data.inProgress} color="#FFF9C4"/>
+      <StatCard label="Ожидают ответа" value={data.pendingClient} color="#BBDEFB"/>
+      <StatCard label="Закрыто сегодня" value={data.closedToday} color="#C8E6C9"/>
     </div>
   );
 };
 
-const StatCard = ({ label, value }: { label: string; value: number }) => {
+const StatCard = ({ label, value, color }: { label: string; value: number; color?: string }) => {
   return (
-    <div className={styles.card}>
+    <div className={styles.card} style={{ backgroundColor: color }}>
       <div className={styles.value}>{value}</div>
       <div className={styles.label}>{label}</div>
     </div>

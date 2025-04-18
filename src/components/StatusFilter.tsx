@@ -16,43 +16,7 @@ const StatusFilter = () => {
 
   return (
     <div>
-      <h3>Фильтр по статусу</h3>
-      <label>
-        <input
-          type="checkbox"
-          value="open"
-          checked={selectedStatus.includes('open')}
-          onChange={handleStatusChange}
-        />
-        Открыто
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="inProgress"
-          checked={selectedStatus.includes('inProgress')}
-          onChange={handleStatusChange}
-        />
-        В обработке
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="pendingClient"
-          checked={selectedStatus.includes('pendingClient')}
-          onChange={handleStatusChange}
-        />
-        Ожидает ответ клиента
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="closed"
-          checked={selectedStatus.includes('closed')}
-          onChange={handleStatusChange}
-        />
-        Закрыто
-      </label>
+
     </div>
   );
 };
