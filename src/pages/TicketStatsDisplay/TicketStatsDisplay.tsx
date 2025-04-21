@@ -13,12 +13,16 @@ const TicketStatsDisplay = () => {
   if (isError || !data) return <p>Ошибка при загрузке статистики</p>;
 
   return (
-    <div className={styles.wrapper}>
+    <>
+    <h1>Dashboard</h1>
+    <div className={styles.wrapper}>      
       <StatCard label="Открыто" value={data.open} color="#FFCDD2"/>
       <StatCard label="В обработке" value={data.inProgress} color="#FFF9C4"/>
       <StatCard label="Ожидают ответа" value={data.pendingClient} color="#BBDEFB"/>
       <StatCard label="Закрыто сегодня" value={data.closedToday} color="#C8E6C9"/>
     </div>
+    </>
+    
   );
 };
 

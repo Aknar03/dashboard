@@ -1,16 +1,17 @@
+// src/components/App.tsx
 import { BrowserRouter } from 'react-router-dom';
-import AppRoutes from '../router/AppRouter';
-import Navbar from './UI/Navbar';
+import AppRouter from '../router/AppRouter';
+import * as styles from './App.module.scss';
 
-const App = () => { 
+const App = () => {
+  return (
+    <BrowserRouter >
+    {/* <main className={styles.main}> */}
+        <AppRouter />
+        {/* </main> */}
+      
+    </BrowserRouter>
+  );
+};
 
-
-    return (
-        <BrowserRouter>
-            <Navbar />
-            <AppRoutes />
-        </BrowserRouter>
-    )
-}
-
-export default App
+export default App;
