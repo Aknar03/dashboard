@@ -1,4 +1,4 @@
-import { TicketStats, TicketSummary } from './types';
+import { TicketPriority, TicketStats, TicketStatus, TicketSummary } from './types';
 
 // Мок-данные для статистики тикетов
 export const mockStatsData: TicketStats = {
@@ -8,61 +8,47 @@ export const mockStatsData: TicketStats = {
   closedToday: 2,
 };
 
-// Мок-данные для тикетов
-export const mockTickets: TicketSummary[] = [
-  {
-    id: '1',
-    subject: 'Issue with login',
-    status: 'open',
-    priority: 'high',
-    lastUpdated: '2025-04-15T10:30:00Z',
-    assignedAgent: 'Agent 1',
-  },
-  {
-    id: '2',
-    subject: 'Slow website',
-    status: 'inProgress',
-    priority: 'medium',
-    lastUpdated: '2025-04-14T15:00:00Z',
-    assignedAgent: 'Agent 2',
-  },
-  {
-    id: '3',
-    subject: 'Payment gateway error',
-    status: 'pendingClient',
-    priority: 'urgent',
-    lastUpdated: '2025-04-14T12:00:00Z',
-    assignedAgent: 'Agent 3',
-  },
-  {
-    id: '4',
-    subject: 'UI bug',
-    status: 'closed',
-    priority: 'low',
-    lastUpdated: '2025-04-13T09:00:00Z',
-    assignedAgent: 'Agent 4',
-  },
-  {
-    id: '5',
-    subject: 'API integration issue',
-    status: 'inProgress',
-    priority: 'high',
-    lastUpdated: '2025-04-14T11:00:00Z',
-    assignedAgent: 'Agent 5',
-    
-  },
-];
+const randomDateInPastWeek = () => {
+  const now = new Date();
+  now.setDate(now.getDate() - Math.floor(Math.random() * 7));
+  now.setHours(Math.floor(Math.random() * 24));
+  now.setMinutes(Math.floor(Math.random() * 60));
+  return now.toISOString();
+};
+
 
 // Функция для имитации асинхронного запроса статистики тикетов
 export const fetchTicketStats = async (): Promise<TicketStats> => {
   return new Promise((resolve) =>
-    setTimeout(() => resolve(mockStatsData), 1000)
+    resolve(mockStatsData)
   );
 };
 
-// Функция для имитации асинхронного запроса тикетов
 export const fetchTickets = async (): Promise<TicketSummary[]> => {
-  return new Promise((resolve) =>
-    setTimeout(() => resolve(mockTickets), 1000)
-  );
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  if (!response.ok) throw new Error('Failed to fetch users');
+  const users = await response.json();
+  const usernames = users.map((u: any) => u.username);
+
+  const statuses: TicketStatus[] = ['open', 'inProgress', 'pendingClient', 'closed'];
+  const priorities: TicketPriority[] = ['low', 'medium', 'high', 'urgent'];
+
+  const tickets: TicketSummary[] = Array.from({ length: 10 }, (_, i) => ({
+    id: (i + 1).toString(),
+    subject: `Ticket #${i + 1}`,
+    status: statuses[Math.floor(Math.random() * statuses.length)],
+    priority: priorities[Math.floor(Math.random() * priorities.length)],
+    lastUpdated: randomDateInPastWeek(),
+    assignedAgent: usernames[Math.floor(Math.random() * usernames.length)],
+  }));
+
+  return new Promise((resolve) => setTimeout(() => resolve(tickets), 1000));
+};
+
+
+export const fetchUsers = async (): Promise<string[]> => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  if (!response.ok) throw new Error('Failed to fetch users');
+  const users = await response.json();
+  return users.map((user: any) => user.username);
 };

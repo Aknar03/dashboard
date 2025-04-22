@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TicketStatus, TicketPriority } from '../API/types'; // Импортируем типы
 
-type SortField = 'priority' | 'lastUpdated' | 'status';
+type SortField = 'priority' | 'lastUpdated' | 'status' | 'assignedAgent' | 'subject';
 type SortDirection = 'asc' | 'desc';
 
 interface FiltersState {

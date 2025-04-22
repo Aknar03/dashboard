@@ -8,7 +8,7 @@ import { setSort } from '../../store/ticketFiltersSlice';
 import { lazy, Suspense, useMemo, useState } from 'react';
 import * as styles from './TicketList.module.scss';
 
-const AdvancedTicketFilters = lazy(() => import('../../components/AdvancedTicketFilters'));
+// const AdvancedTicketFilters = lazy(() => import('../../components/AdvancedTicketFilters'));
 
 const TicketList = () => {
   const { data: tickets, isLoading, isError } = useQuery({
@@ -43,6 +43,14 @@ const TicketList = () => {
           const statusOrder = ['open', 'inProgress', 'pendingClient', 'closed'];
           return (statusOrder.indexOf(a.status) - statusOrder.indexOf(b.status)) * multiplier;
         }
+
+        if (field === 'assignedAgent') {
+          return (a.assignedAgent.localeCompare(b.assignedAgent)) * multiplier;
+        }
+        if (field === 'subject') {
+          const getTicketNumber = (ticket: string) => parseInt(ticket.replace(/\D/g, ''), 10);
+          return (getTicketNumber(a.subject) - getTicketNumber(b.subject)) * multiplier;
+        }
   
         return 0;
       });
@@ -57,7 +65,21 @@ const TicketList = () => {
       <table className={styles.table}>
       <thead>
   <tr>
-    <th>Subject</th>
+    <th
+    onClick={() =>
+      dispatch(
+        setSort({
+          field: 'subject',
+          direction:
+            filters.sort.field === 'subject' && filters.sort.direction === 'asc'
+              ? 'desc'
+              : 'asc',
+        })
+      )
+    }
+    >
+      Subject ⬍
+      </th>
     <th
       onClick={() =>
         dispatch(
@@ -88,7 +110,21 @@ const TicketList = () => {
     >
       Priority ⬍
     </th>
-    <th>Assigned to</th>
+    <th
+      onClick={() =>
+        dispatch(
+          setSort({
+            field: 'assignedAgent',
+            direction:
+              filters.sort.field === 'assignedAgent' && filters.sort.direction === 'asc'
+                ? 'desc'
+                : 'asc',
+          })
+        )
+      }
+    >
+      Assigned to ⬍
+    </th>
     <th
       onClick={() =>
         dispatch(
