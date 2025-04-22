@@ -27,16 +27,28 @@ const ticketFiltersSlice = createSlice({
   initialState,
   reducers: {
     setStatusFilter(state, action: PayloadAction<TicketStatus[]>) {
-      state.status = action.payload;
+      if (state.status !== action.payload) {
+        state.status = action.payload;
+      }
     },
     setPriorityFilter(state, action: PayloadAction<TicketPriority[]>) {
-      state.priority = action.payload;
+      if (state.priority !== action.payload) {
+        state.priority = action.payload;
+      }
     },
     setSort(state, action: PayloadAction<{ field: SortField; direction: SortDirection }>) {
+
+      if (
+        state.sort.field === action.payload.field &&
+        state.sort.direction === action.payload.direction
+      ) {
+        return state; 
+      }
       state.sort = action.payload;
     },
   },
 });
+
 
 export const { setStatusFilter, setPriorityFilter, setSort } = ticketFiltersSlice.actions;
 export default ticketFiltersSlice.reducer;
