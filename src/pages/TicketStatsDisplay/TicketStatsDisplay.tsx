@@ -5,12 +5,12 @@ import * as styles from './TicketStatsDisplay.module.scss';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
-import { log } from 'console';
+
 
 const TicketStatsDisplay = () => {
   const { data, isLoading, isError } = useQuery<TicketStats>({
     queryKey: ['ticketStats'],
-    queryFn: () => fetchTicketStats(),
+    queryFn: fetchTicketStats,
   });
 
   if (isLoading) return <p>Загрузка статистики...</p>;
