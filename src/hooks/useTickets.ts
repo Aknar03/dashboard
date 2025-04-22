@@ -50,7 +50,7 @@ export const useTickets = (
 
   const sortedAndSearchedTickets = useMemo(() => {
     return sortedTickets.filter((ticket) =>
-      `${ticket.subject} ${ticket.status} ${ticket.priority} ${ticket.assignedAgent}`
+      `${ticket.assignedAgent}`
         .toLowerCase()
         .includes(query.toLowerCase())
     );

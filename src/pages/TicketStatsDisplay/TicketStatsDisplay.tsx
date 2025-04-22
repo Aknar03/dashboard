@@ -38,7 +38,8 @@ const TicketStatsDisplay = () => {
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis allowDecimals={false}/>
-      <Tooltip />
+
+
       <Bar dataKey="value" fill="#42A5F5" radius={[4, 4, 0, 0]} />
     </BarChart>
   </ResponsiveContainer>
