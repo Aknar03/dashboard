@@ -5,6 +5,7 @@ import * as styles from './TicketStatsDisplay.module.scss';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
+import { CircularProgress } from '@mui/material';
 
 
 const TicketStatsDisplay = () => {
@@ -13,7 +14,11 @@ const TicketStatsDisplay = () => {
     queryFn: fetchTicketStats,
   });
 
-  if (isLoading) return <p>Загрузка статистики...</p>;
+  if (isLoading) return (
+    <div className={styles.loader}>
+      <CircularProgress size='80px'/>
+    </div>
+  );
   if (isError || !data) return <p>Ошибка при загрузке статистики</p>;
 
   const chartData = [
@@ -22,6 +27,7 @@ const TicketStatsDisplay = () => {
     { name: 'Ожидают ответа', value: data.pendingClient },
     { name: 'Закрыто сегодня', value: data.closedToday },
   ];
+
 
 
   return (

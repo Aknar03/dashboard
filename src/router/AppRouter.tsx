@@ -12,7 +12,7 @@ const AppRouter = () => (
       <Route
         path="ticketList"
         element={
-          <Suspense fallback="loading...">
+          <Suspense>
             <Tickets />
           </Suspense>
         }
@@ -20,7 +20,7 @@ const AppRouter = () => (
       <Route
         path="ticketStats"
         element={
-          <Suspense fallback="loading...">
+          <Suspense>
             <TicketStatsDisplay />
           </Suspense>
         }

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import * as styles from './TicketList.module.scss';
 import Input from '../../components/UI/input/Input';
 import { useTickets } from '../../hooks/useTickets';
+import { CircularProgress } from '@mui/material';
 
 const TicketList = () => {
   const { data: tickets, isLoading, isError } = useQuery({
@@ -31,11 +32,17 @@ const TicketList = () => {
     searchQuery
   );
 
-  if (isLoading) return <p>Загрузка тикетов...</p>;
+  if (isLoading) return (
+    <div className={styles.loader}>
+      <CircularProgress size='80px'/>
+    </div>
+    
+  );
   if (isError || !tickets) return <p>Ошибка загрузки</p>;
 
   return (
     <>
+    
       <Input
         placeholder="Поиск..."
         value={searchQuery}
